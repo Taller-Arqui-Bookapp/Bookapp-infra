@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: bookapp-postgres
+    environment:
+      POSTGRES_DB: bookapp
+      POSTGRES_USER: bookapp_user
+      POSTGRES_PASSWORD: bookapp_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: bookapp-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.test
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
+volumes:
+  pgdata: {}
